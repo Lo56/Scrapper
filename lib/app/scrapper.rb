@@ -5,6 +5,7 @@ require 'json'
 require 'pry'
 require 'rb-readline'
 require 'google_drive'
+require 'csv'
 
 #Création de la class Scrapper
 class Scrapper

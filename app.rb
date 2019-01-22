@@ -45,15 +45,12 @@ end
 def save_as_csv(hash)
   array_city_town = hash
 
-  #Ajout des titres
-  CSV.open("db/emails.csv", "wb") do |csv|
-    csv << ["Villes","Emails"]
+  CSV.open("db/emails.csv", "w") do |csv|
+    JSON.parse(File.open("db/emails.json").read).each do |hash|
+      csv << hash.values
+    end
   end
-
-  #Boucles pour mettre dans l'array 'keys & values'
-  array_city_town.each do |email, name|
-    csv << [email, name]
-  end
+  
 end   
 
 
@@ -61,5 +58,5 @@ end
 save_as_JSON(scrapper.get_townhall_urls)
 save_as_spreedsheet(scrapper.get_townhall_urls)
 
-#Non fonctionnel
+#Semi-fonctionnel
 save_as_csv(scrapper.get_townhall_urls)
